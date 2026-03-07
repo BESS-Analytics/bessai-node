@@ -1,0 +1,68 @@
+{
+  "name": "bessai",
+  "version": "0.1.0",
+  "description": "Official Node.js/TypeScript SDK for the BESS AI Voice Platform",
+  "author": "BESS AI",
+  "license": "MIT",
+  "type": "module",
+  "main": "./dist/index.cjs",
+  "module": "./dist/index.js",
+  "types": "./dist/index.d.ts",
+  "exports": {
+    ".": {
+      "import": {
+        "types": "./dist/index.d.ts",
+        "default": "./dist/index.js"
+      },
+      "require": {
+        "types": "./dist/index.d.cts",
+        "default": "./dist/index.cjs"
+      }
+    }
+  },
+  "files": [
+    "dist",
+    "LICENSE",
+    "README.md",
+    "CHANGELOG.md"
+  ],
+  "engines": {
+    "node": ">=18.0.0"
+  },
+  "scripts": {
+    "build": "tsup",
+    "typecheck": "tsc --noEmit",
+    "clean": "rimraf dist",
+    "prepublishOnly": "npm run build"
+  },
+  "dependencies": {
+    "ws": "^8.18.0"
+  },
+  "devDependencies": {
+    "@types/node": "^20.14.0",
+    "@types/ws": "^8.5.10",
+    "rimraf": "^5.0.7",
+    "tsup": "^8.1.0",
+    "typescript": "^5.5.0"
+  },
+  "keywords": [
+    "bessai",
+    "bess-ai",
+    "voice-ai",
+    "ai-agent",
+    "voice-agent",
+    "call-center",
+    "telephony",
+    "sip",
+    "livekit",
+    "sdk"
+  ],
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/bessai/bess-ai-sdk-node"
+  },
+  "homepage": "https://docs.bessai.com",
+  "bugs": {
+    "url": "https://github.com/bessai/bess-ai-sdk-node/issues"
+  }
+}
