@@ -128,7 +128,23 @@ export interface ExecuteResponse {
 }
 
 // ── Request Models ───────────────────────────────────────────────────────
+export interface WorkflowCreateParams {
+  name: string;
+  trigger_type: string;
+  workflow_json: Record<string, unknown>;
+  description?: string;
+  trigger_config?: Record<string, unknown>;
+  execution_mode?: string;
+  timeout_seconds?: number;
+}
 
+export interface WorkflowCreateResponse {
+  workflow_id: string;
+  name: string;
+  trigger_type?: string;
+  status?: string;
+  message?: string;
+}
 export interface WorkflowGenerateParams {
   name: string;
   description: string;

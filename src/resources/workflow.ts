@@ -12,6 +12,8 @@ import type {
   AgentWorkflowLinkResponse,
   AgentWorkflowListItem,
   ScheduleStatusResponse,
+  WorkflowCreateParams,
+  WorkflowCreateResponse,
   GenerateResponse,
   DeployResponse,
   ExecuteResponse,
@@ -30,7 +32,12 @@ export class WorkflowResource {
   constructor(private readonly client: HTTPClient) {}
 
   // ── CRUD ───────────────────────────────────────────────────────────
-
+  /** Create a workflow by providing n8n JSON directly. */
+  async create(params: WorkflowCreateParams): Promise<WorkflowCreateResponse> {
+    return this.client.post<WorkflowCreateResponse>("/api/v1/workflows", {
+      json: params as unknown as Record<string, unknown>,
+    });
+  }
   /** Generate a new workflow from a natural-language description. */
   async generate(params: WorkflowGenerateParams): Promise<GenerateResponse> {
     return this.client.post<GenerateResponse>("/api/v1/workflows/generate", {
