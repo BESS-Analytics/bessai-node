@@ -2,7 +2,7 @@
  * BESS AI SDK — Configuration.
  */
 
-export const DEFAULT_BASE_URL = "https://api.bessai.com";
+export const DEFAULT_BASE_URL = "https://api.bess-ai.com";
 export const DEFAULT_TIMEOUT = 30_000; // ms
 export const DEFAULT_MAX_RETRIES = 3;
 

@@ -39,7 +39,7 @@ console.log(agent.agent_id);
 ```typescript
 const client = new BessAI({
   apiKey: "bess_...",              // or set BESSAI_API_KEY env var
-  baseUrl: "https://api.bessai.com", // or set BESSAI_BASE_URL env var
+  baseUrl: "https://api.bess-ai.com", // or set BESSAI_BASE_URL env var
   timeout: 30_000,                // request timeout in ms (default: 30s)
   maxRetries: 3,                  // retry count for 429/5xx (default: 3)
 });
