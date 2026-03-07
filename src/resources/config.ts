@@ -16,24 +16,24 @@ export class ConfigResource {
   /** Get all provider configurations. */
   async getProviders(): Promise<ProviderConfig> {
     return this.client.get<ProviderConfig>(
-      "/api/v1/config/providers"
+      "/v1/config/providers"
     );
   }
 
   /** Get configuration for a specific provider category (stt, llm, tts, realtime). */
   async getProvider(category: string): Promise<Record<string, unknown>> {
-    return this.client.get(`/api/v1/config/providers/${category}`);
+    return this.client.get(`/v1/config/providers/${category}`);
   }
 
   /** Get model defaults. */
   async getDefaults(): Promise<DefaultsConfig> {
     return this.client.get<DefaultsConfig>(
-      "/api/v1/config/defaults"
+      "/v1/config/defaults"
     );
   }
 
   /** Get supported languages. */
   async getLanguages(): Promise<LanguageEntry[]> {
-    return this.client.get<LanguageEntry[]>("/api/v1/config/languages");
+    return this.client.get<LanguageEntry[]>("/v1/config/languages");
   }
 }

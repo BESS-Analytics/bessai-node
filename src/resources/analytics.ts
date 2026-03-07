@@ -19,7 +19,7 @@ export class AnalyticsResource {
     toDate?: string,
     agentId?: string
   ): Promise<AnalyticsSummary> {
-    return this.client.get<AnalyticsSummary>("/api/v1/analytics/summary", {
+    return this.client.get<AnalyticsSummary>("/v1/analytics/summary", {
       params: { from_date: fromDate, to_date: toDate, agent_id: agentId },
     });
   }
@@ -30,7 +30,7 @@ export class AnalyticsResource {
     toDate?: string,
     agentId?: string
   ): Promise<LatencyMetrics> {
-    return this.client.get<LatencyMetrics>("/api/v1/analytics/latency", {
+    return this.client.get<LatencyMetrics>("/v1/analytics/latency", {
       params: { from_date: fromDate, to_date: toDate, agent_id: agentId },
     });
   }
@@ -41,7 +41,7 @@ export class AnalyticsResource {
     toDate?: string,
     agentId?: string
   ): Promise<CallsByDay[]> {
-    return this.client.get<CallsByDay[]>("/api/v1/analytics/calls-by-day", {
+    return this.client.get<CallsByDay[]>("/v1/analytics/calls-by-day", {
       params: { from_date: fromDate, to_date: toDate, agent_id: agentId },
     });
   }

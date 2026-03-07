@@ -17,44 +17,44 @@ export class APIKeysResource {
 
   /** Create a new API key. */
   async create(params: APIKeyCreateParams): Promise<APIKeyCreated> {
-    return this.client.post<APIKeyCreated>("/api/v1/api-keys", {
+    return this.client.post<APIKeyCreated>("/v1/api-keys", {
       json: params as unknown as Record<string, unknown>,
     });
   }
 
   /** List all API keys. */
   async list(): Promise<APIKey[]> {
-    return this.client.get<APIKey[]>("/api/v1/api-keys");
+    return this.client.get<APIKey[]>("/v1/api-keys");
   }
 
   /** Get a single API key by ID. */
   async get(keyId: string): Promise<APIKey> {
-    return this.client.get<APIKey>(`/api/v1/api-keys/${keyId}`);
+    return this.client.get<APIKey>(`/v1/api-keys/${keyId}`);
   }
 
   /** Update an API key. */
   async update(keyId: string, params: APIKeyUpdateParams): Promise<APIKey> {
-    return this.client.patch<APIKey>(`/api/v1/api-keys/${keyId}`, {
+    return this.client.patch<APIKey>(`/v1/api-keys/${keyId}`, {
       json: params as unknown as Record<string, unknown>,
     });
   }
 
   /** Delete an API key. */
   async delete(keyId: string): Promise<Record<string, unknown>> {
-    return this.client.delete(`/api/v1/api-keys/${keyId}`);
+    return this.client.delete(`/v1/api-keys/${keyId}`);
   }
 
   /** Rotate an API key (generates a new secret). */
   async rotate(keyId: string): Promise<APIKeyCreated> {
     return this.client.post<APIKeyCreated>(
-      `/api/v1/api-keys/${keyId}/rotate`
+      `/v1/api-keys/${keyId}/rotate`
     );
   }
 
   /** Get usage stats for an API key. */
   async getUsage(keyId: string): Promise<APIKeyUsage> {
     return this.client.get<APIKeyUsage>(
-      `/api/v1/api-keys/${keyId}/usage`
+      `/v1/api-keys/${keyId}/usage`
     );
   }
 }

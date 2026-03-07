@@ -24,7 +24,7 @@ export class PhoneNumberResource {
 
   /** Register a phone number. */
   async create(params: PhoneNumberCreateParams): Promise<PhoneNumberResponse> {
-    return this.client.post<PhoneNumberResponse>("/api/v1/phone-numbers", {
+    return this.client.post<PhoneNumberResponse>("/v1/phone-numbers", {
       json: params as unknown as Record<string, unknown>,
     });
   }
@@ -32,7 +32,7 @@ export class PhoneNumberResource {
   /** Retrieve a phone number by ID. */
   async retrieve(phoneNumberId: string): Promise<PhoneNumberDetailResponse> {
     return this.client.get<PhoneNumberDetailResponse>(
-      `/api/v1/phone-numbers/${phoneNumberId}`
+      `/v1/phone-numbers/${phoneNumberId}`
     );
   }
 
@@ -43,7 +43,7 @@ export class PhoneNumberResource {
 
   /** List phone numbers. */
   async list(skip = 0, limit = 50): Promise<PaginatedResponse<PhoneNumberResponse>> {
-    return this.client.get<PaginatedResponse<PhoneNumberResponse>>("/api/v1/phone-numbers", {
+    return this.client.get<PaginatedResponse<PhoneNumberResponse>>("/v1/phone-numbers", {
       params: { skip, limit },
     });
   }
@@ -53,14 +53,14 @@ export class PhoneNumberResource {
     phoneNumberId: string,
     params: PhoneNumberUpdateParams
   ): Promise<PhoneNumberDetailResponse> {
-    return this.client.patch<PhoneNumberDetailResponse>(`/api/v1/phone-numbers/${phoneNumberId}`, {
+    return this.client.patch<PhoneNumberDetailResponse>(`/v1/phone-numbers/${phoneNumberId}`, {
       json: params as unknown as Record<string, unknown>,
     });
   }
 
   /** Delete a phone number. */
   async delete(phoneNumberId: string): Promise<Record<string, unknown>> {
-    return this.client.delete(`/api/v1/phone-numbers/${phoneNumberId}`);
+    return this.client.delete(`/v1/phone-numbers/${phoneNumberId}`);
   }
 
   /** Update the agents assigned to a phone number. */
@@ -68,7 +68,7 @@ export class PhoneNumberResource {
     phoneNumberId: string,
     params: PhoneNumberAgentUpdateParams
   ): Promise<PhoneNumberDetailResponse> {
-    return this.client.patch<PhoneNumberDetailResponse>(`/api/v1/phone-numbers/${phoneNumberId}/agents`, {
+    return this.client.patch<PhoneNumberDetailResponse>(`/v1/phone-numbers/${phoneNumberId}/agents`, {
       json: params as unknown as Record<string, unknown>,
     });
   }
@@ -81,7 +81,7 @@ export class PhoneNumberResource {
     params: SIPConnectionCreateParams
   ): Promise<SIPConnectionResponse> {
     return this.client.post<SIPConnectionResponse>(
-      `/api/v1/phone-numbers/${phoneNumberId}/sip-connections`,
+      `/v1/phone-numbers/${phoneNumberId}/sip-connections`,
       { json: params as unknown as Record<string, unknown> }
     );
   }
@@ -92,7 +92,7 @@ export class PhoneNumberResource {
     connectionId: string
   ): Promise<SIPConnectionResponse> {
     return this.client.get<SIPConnectionResponse>(
-      `/api/v1/phone-numbers/${phoneNumberId}/sip-connections/${connectionId}`
+      `/v1/phone-numbers/${phoneNumberId}/sip-connections/${connectionId}`
     );
   }
 
@@ -101,7 +101,7 @@ export class PhoneNumberResource {
     phoneNumberId: string
   ): Promise<SIPConnectionResponse[]> {
     return this.client.get<SIPConnectionResponse[]>(
-      `/api/v1/phone-numbers/${phoneNumberId}/sip-connections`
+      `/v1/phone-numbers/${phoneNumberId}/sip-connections`
     );
   }
 
@@ -112,7 +112,7 @@ export class PhoneNumberResource {
     params: SIPConnectionUpdateParams
   ): Promise<SIPConnectionResponse> {
     return this.client.patch<SIPConnectionResponse>(
-      `/api/v1/phone-numbers/${phoneNumberId}/sip-connections/${connectionId}`,
+      `/v1/phone-numbers/${phoneNumberId}/sip-connections/${connectionId}`,
       { json: params as unknown as Record<string, unknown> }
     );
   }
@@ -123,7 +123,7 @@ export class PhoneNumberResource {
     connectionId: string
   ): Promise<Record<string, unknown>> {
     return this.client.delete(
-      `/api/v1/phone-numbers/${phoneNumberId}/sip-connections/${connectionId}`
+      `/v1/phone-numbers/${phoneNumberId}/sip-connections/${connectionId}`
     );
   }
 
@@ -132,7 +132,7 @@ export class PhoneNumberResource {
     phoneNumberId: string
   ): Promise<SIPDispatchRuleResponse[]> {
     return this.client.get<SIPDispatchRuleResponse[]>(
-      `/api/v1/phone-numbers/${phoneNumberId}/dispatch-rules`
+      `/v1/phone-numbers/${phoneNumberId}/dispatch-rules`
     );
   }
 }

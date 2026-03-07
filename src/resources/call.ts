@@ -19,44 +19,49 @@ export class CallResource {
 
   /** Create an outbound phone call. */
   async createPhoneCall(params: PhoneCallCreateParams): Promise<CallResponse> {
-    return this.client.post<CallResponse>("/api/v1/calls/phone", {
+    return this.client.post<CallResponse>("/v1/calls/phone", {
       json: params as unknown as Record<string, unknown>,
     });
   }
 
   /** Create a web (browser) call. */
   async createWebCall(params: WebCallCreateParams): Promise<CallResponse> {
-    return this.client.post<CallResponse>("/api/v1/calls/web", {
+    return this.client.post<CallResponse>("/v1/calls/web", {
       json: params as unknown as Record<string, unknown>,
     });
   }
 
   /** Create a test call for debugging. */
   async createTestCall(params: TestCallCreateParams): Promise<CallResponse> {
-    return this.client.post<CallResponse>("/api/v1/calls/test", {
+    return this.client.post<CallResponse>("/v1/calls/test", {
       json: params as unknown as Record<string, unknown>,
     });
   }
 
   /** Retrieve a single call by ID. */
   async retrieve(callId: string): Promise<CallResponse> {
-    return this.client.get<CallResponse>(`/api/v1/calls/${callId}`);
+    return this.client.get<CallResponse>(`/v1/calls/${callId}`);
   }
 
   /** List calls with optional filters. */
   async list(params?: CallListParams): Promise<PaginatedResponse<CallListItem>> {
-    return this.client.get<PaginatedResponse<CallListItem>>("/api/v1/calls", {
+    return this.client.get<PaginatedResponse<CallListItem>>("/v1/calls", {
       params: params as unknown as Record<string, unknown>,
     });
   }
 
   /** End an active call. */
   async end(callId: string): Promise<Record<string, unknown>> {
-    return this.client.post(`/api/v1/calls/${callId}/end`);
+    return this.client.post(`/v1/calls/${callId}/end`);
   }
 
   /** Delete a call record. */
   async delete(callId: string): Promise<Record<string, unknown>> {
-    return this.client.delete(`/api/v1/calls/${callId}`);
+    return this.client.delete(`/v1/calls/${callId}`);
+  }
+
+  /** Download the call recording audio file as raw bytes. */
+  async getRecording(callId: string): Promise<ArrayBuffer> {
+    return this.client.getBytes(`/v1/calls/${callId}/recording`);
   }
 }

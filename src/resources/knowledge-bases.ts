@@ -14,26 +14,26 @@ export class KnowledgeBasesResource {
 
   /** Create a new knowledge base. */
   async create(params: KnowledgeBaseCreateParams): Promise<KnowledgeBase> {
-    return this.client.post<KnowledgeBase>("/api/v1/knowledge-bases", {
+    return this.client.post<KnowledgeBase>("/v1/knowledge-bases", {
       json: params as unknown as Record<string, unknown>,
     });
   }
 
   /** List all knowledge bases. */
   async list(): Promise<KnowledgeBase[]> {
-    return this.client.get<KnowledgeBase[]>("/api/v1/knowledge-bases");
+    return this.client.get<KnowledgeBase[]>("/v1/knowledge-bases");
   }
 
   /** Get a knowledge base by ID. */
   async get(knowledgeBaseId: string): Promise<KnowledgeBase> {
     return this.client.get<KnowledgeBase>(
-      `/api/v1/knowledge-bases/${knowledgeBaseId}`
+      `/v1/knowledge-bases/${knowledgeBaseId}`
     );
   }
 
   /** Delete a knowledge base. */
   async delete(knowledgeBaseId: string): Promise<Record<string, unknown>> {
-    return this.client.delete(`/api/v1/knowledge-bases/${knowledgeBaseId}`);
+    return this.client.delete(`/v1/knowledge-bases/${knowledgeBaseId}`);
   }
 
   /** Upload a document to a knowledge base. */
@@ -48,7 +48,7 @@ export class KnowledgeBasesResource {
     formData.append("file", blob, filename);
 
     return this.client.post(
-      `/api/v1/knowledge-bases/${knowledgeBaseId}/documents`,
+      `/v1/knowledge-bases/${knowledgeBaseId}/documents`,
       { formData }
     );
   }
@@ -59,7 +59,7 @@ export class KnowledgeBasesResource {
     documentId: string
   ): Promise<Record<string, unknown>> {
     return this.client.delete(
-      `/api/v1/knowledge-bases/${knowledgeBaseId}/documents/${documentId}`
+      `/v1/knowledge-bases/${knowledgeBaseId}/documents/${documentId}`
     );
   }
 }

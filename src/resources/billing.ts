@@ -24,13 +24,13 @@ export class BillingResource {
   /** Get current credit balance. */
   async getBalance(): Promise<CreditBalanceResponse> {
     return this.client.get<CreditBalanceResponse>(
-      "/api/v1/billing/balance"
+      "/v1/billing/balance"
     );
   }
 
   /** Check if balance is sufficient for a given amount. */
   async checkBalance(amount: number): Promise<BalanceCheckResponse> {
-    return this.client.get<BalanceCheckResponse>("/api/v1/billing/balance/check", {
+    return this.client.get<BalanceCheckResponse>("/v1/billing/balance/check", {
       params: { amount },
     });
   }
@@ -41,7 +41,7 @@ export class BillingResource {
     offset = 0,
     transactionType?: string
   ): Promise<TransactionListResponse> {
-    return this.client.get<TransactionListResponse>("/api/v1/billing/transactions", {
+    return this.client.get<TransactionListResponse>("/v1/billing/transactions", {
       params: { limit, offset, transaction_type: transactionType },
     });
   }
@@ -52,7 +52,7 @@ export class BillingResource {
     offset = 0,
     eventType?: string
   ): Promise<UsageListResponse> {
-    return this.client.get<UsageListResponse>("/api/v1/billing/usage", {
+    return this.client.get<UsageListResponse>("/v1/billing/usage", {
       params: { limit, offset, event_type: eventType },
     });
   }
@@ -62,7 +62,7 @@ export class BillingResource {
     fromDate?: string,
     toDate?: string
   ): Promise<UsageSummaryResponse> {
-    return this.client.get<UsageSummaryResponse>("/api/v1/billing/usage/summary", {
+    return this.client.get<UsageSummaryResponse>("/v1/billing/usage/summary", {
       params: { from_date: fromDate, to_date: toDate },
     });
   }
@@ -72,7 +72,7 @@ export class BillingResource {
     fromDate?: string,
     toDate?: string
   ): Promise<DailyUsageItem[]> {
-    return this.client.get<DailyUsageItem[]>("/api/v1/billing/usage/daily", {
+    return this.client.get<DailyUsageItem[]>("/v1/billing/usage/daily", {
       params: { from_date: fromDate, to_date: toDate },
     });
   }
@@ -80,14 +80,14 @@ export class BillingResource {
   /** Get usage breakdown for a specific call. */
   async getCallUsage(callId: string): Promise<CallUsageResponse> {
     return this.client.get<CallUsageResponse>(
-      `/api/v1/billing/usage/calls/${callId}`
+      `/v1/billing/usage/calls/${callId}`
     );
   }
 
   /** Get service pricing tables. */
   async getPricing(): Promise<ServicePricingResponse> {
     return this.client.get<ServicePricingResponse>(
-      "/api/v1/billing/pricing"
+      "/v1/billing/pricing"
     );
   }
 
@@ -95,7 +95,7 @@ export class BillingResource {
   async estimatePricing(
     params: PricingEstimateParams
   ): Promise<PricingEstimateResponse> {
-    return this.client.post<PricingEstimateResponse>("/api/v1/billing/pricing/estimate", {
+    return this.client.post<PricingEstimateResponse>("/v1/billing/pricing/estimate", {
       json: params as unknown as Record<string, unknown>,
     });
   }

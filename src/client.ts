@@ -173,4 +173,25 @@ export class HTTPClient {
   delete<T = Record<string, unknown>>(path: string, options?: RequestOptions) {
     return this.request<T>("DELETE", path, options);
   }
+
+  /** GET request returning raw bytes (for file downloads like recordings). */
+  async getBytes(path: string, options: RequestOptions = {}): Promise<ArrayBuffer> {
+    const url = `${this.config.baseUrl}${path}${buildQuery(options.params)}`;
+    const headers: Record<string, string> = { ...this.defaultHeaders };
+    delete headers["Accept"];
+    delete headers["Content-Type"];
+
+    const controller = new AbortController();
+    const timer = setTimeout(() => controller.abort(), this.config.timeout);
+    try {
+      const res = await fetch(url, { method: "GET", headers, signal: controller.signal });
+      if (!res.ok) {
+        const body = await res.json().catch(() => ({})) as Record<string, unknown>;
+        raiseForStatus(res.status, body);
+      }
+      return res.arrayBuffer();
+    } finally {
+      clearTimeout(timer);
+    }
+  }
 }
