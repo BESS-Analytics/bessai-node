@@ -41,6 +41,8 @@ export interface AgentVersion {
   reminder_trigger_ms?: number;
   reminder_max_count?: number;
   background_sound?: string;
+  background_sound_volume?: number;
+  thinking_sound?: string;
   analytics_prompt?: string;
   analytics_model_provider?: string;
   analytics_model?: string;
@@ -122,6 +124,8 @@ export interface AgentCreateParams {
   reminder_trigger_ms?: number;
   reminder_max_count?: number;
   background_sound?: string;
+  background_sound_volume?: number;
+  thinking_sound?: string;
   analytics_prompt?: string;
   analytics_model_provider?: string;
   analytics_model?: string;
@@ -177,6 +181,8 @@ export interface AgentUpdateParams {
   reminder_trigger_ms?: number;
   reminder_max_count?: number;
   background_sound?: string;
+  background_sound_volume?: number;
+  thinking_sound?: string;
   analytics_prompt?: string;
   analytics_model_provider?: string;
   analytics_model?: string;
